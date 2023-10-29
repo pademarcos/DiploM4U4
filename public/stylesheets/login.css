@@ -1,3 +1,14 @@
-.titulo{
-    background-color: rgb(51, 150, 47);
+
+.h1{
+    background-color: lightcoral;
+}
+.logintitulo{
+    width: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background-color: lightslategray;
+    border-radius: 2%;
 }
