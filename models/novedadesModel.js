@@ -36,7 +36,7 @@ async function modficarNovedadById (obj, id){
 
 async function borrarNovedadById(id) {
     try {
-      var query = "delete from novedades where id=?";
+      var query = "delete from novedades where id = ?";
       var rows = await pool.query(query, [id]);
       return rows;
     } catch (error) {

@@ -67,7 +67,7 @@ router.post('/modificar', async (req, res, next) => {
     }
 })
 
-router.post('/borrar/:id', async (req, res, next) => {
+router.get('/borrar/:id', async (req, res, next) => {
   try {
     let id = req.params.id;
     await novedadesModel.borrarNovedadById(id);
