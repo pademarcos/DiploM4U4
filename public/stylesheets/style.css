@@ -1,4 +1,5 @@
 body {
+  background-color: lightseagreen;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -7,7 +8,7 @@ a {
   color: #00B7FF;
 }
 h1{
-  background-color: rgb(38, 202, 38);
+  background-color: rgb(196, 200, 196);
 }
 h2{
   background-color: rgb(27, 110, 138);
