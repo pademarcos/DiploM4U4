@@ -1,7 +1,10 @@
+
+
+
 <div class="container" style="margin-top: 50px;">
   {{!-- fila1 --}}
   <div class="row">
-    <p class="text-end">Hola {{usuario}} <a class="btn btn-danger" href="/admin/login/logout">Cerrar sesion <i class="fas fa-sign-out-alt"></i></a></p>
+    <p class="text-end">Hola {{persona}} <a class="btn btn-danger" href="/admin/login/logout">Cerrar sesion <i class="fas fa-sign-out-alt"></i></a></p>
   </div>
   {{!-- fin fila1 --}}
   {{!-- fila2 --}}
@@ -14,6 +17,27 @@
     </div>
   </div>
     {{!-- fin fila2 --}}
+    {{!-- Modal Borrar Novedad --}}
+    <div class="modal" tabindex="-1" role="dialog" id="confirmarBorradoModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar Borrado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas borrar esta novedad?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <a class="btn btn-danger" id="confirmarBorradoBtn" href="#">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Fin Modal Borrar Novedad --}}
     {{!-- fila3 --}}
     <div class="row">
       <div class="col">
@@ -35,7 +59,7 @@
               <td>{{cuerpo}}</td>
               <td class="text-end">
                 <a class="btn btn-sm btn-secondary" href="/admin/novedades/modificar/{{id}}"><i class="fa fa-pencil">Modificar</i></a>
-                <a class="btn btn-danger" href="/admin/novedades/borrar/{{id}}"><i class="fa fa-trash" aria-hidden="true">Borrar</i></a>
+                <a class="btn btn-danger borrar-novedad" href="#" data-id="{{id}}" data-toggle="modal" data-target="#confirmarBorradoModal"><i class="fa fa-trash" aria-hidden="true">Borrar</i></a>
               </td>
             </tr>
             {{/each}}
@@ -45,3 +69,16 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var confirmarBorradoBtn = document.getElementById('confirmarBorradoBtn');
+    var borrarNovedadBtns = document.querySelectorAll('.borrar-novedad');
+
+    borrarNovedadBtns.forEach(function (btn) {
+      btn.addEventListener('click', function (event) {
+        var novedadId = event.currentTarget.getAttribute('data-id');
+        confirmarBorradoBtn.href = '/admin/novedades/borrar/' + novedadId;
+      });
+    });
+  });
+</script>

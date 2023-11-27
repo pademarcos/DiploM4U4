@@ -12,4 +12,14 @@ async function getUserByUserNameAndPassword(user, password){
     }
 }
 
-module.exports = { getUserByUserNameAndPassword }
+async function insertUsuario(usuario) {
+    try {
+      var query = 'INSERT INTO usuarios (usuario, password) VALUES (?, ?)';
+      await pool.query(query, [usuario.usuario, usuario.password]);
+    } catch (error) {
+      console.log("Error al insertar el usuario", error);
+      throw error; // Reenviar el error para manejarlo en la ruta
+    }
+  }
+  
+  module.exports = { getUserByUserNameAndPassword, insertUsuario };

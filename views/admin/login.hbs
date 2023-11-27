@@ -11,7 +11,7 @@
 </head>
 
 <div class="container logintitulo">
-  <h1>Iniciar sesion (pepe/pepe123 y pablo/pablo123)</h1>
+  <h1>Iniciar sesion (pepe/pepe123)</h1>
 
 <form action="/admin/login" method="post">
   <div class="mb-3 row">
@@ -36,9 +36,39 @@
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">Ingresar</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registroModal">Registrarme</button>
   </div>
 </form>
 {{#if error}}
 <h3>Usuario y/o contraseña incorrectos</h3>
 {{/if}}
+</div>
+<!-- Modal de Registro -->
+<div class="modal" tabindex="-1" role="dialog" id="registroModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registrarme</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/registro" method="post">
+          <div class="mb-3">
+            <label for="inputNuevoUsuario" class="form-label">Nuevo Usuario</label>
+            <input type="text" class="form-control" id="inputNuevoUsuario" placeholder="Nuevo Usuario" name="nuevoUsuario" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputNuevaContraseña" class="form-label">Nueva Contraseña</label>
+            <input type="password" class="form-control" id="inputNuevaContraseña" placeholder="Nueva Contraseña" name="nuevaContraseña" required>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

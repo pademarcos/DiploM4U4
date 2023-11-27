@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var usuariosModel = require('./../../models/usuariosModel');
+const md5 = require('md5');
 
 /* GET login page. */
 router.get('/', function (req, res, next) {
@@ -18,8 +19,8 @@ router.get('/logout', function (req, res, next){
 
 router.post ('/', async (req, res, next) => {
   try{
-    var usuario = req.body.usuario;  //pablo / pepe /captura informacion de formulario
-    var password = req.body.password;//pablo123 / pepe123
+    var usuario = req.body.usuario;  // pepe /captura informacion de formulario
+    var password = req.body.password;// pepe123
 
     var data = await usuariosModel.getUserByUserNameAndPassword(usuario, password); //lo almacena en data
 
@@ -27,21 +28,18 @@ router.post ('/', async (req, res, next) => {
 
       req.session.id_usuario = data.id;
       req.session.nombre = data.usuario;
-
       res.redirect('/admin/novedades');
-
     } else{
       res.render('admin/login', {
         layout: 'admin/layout',
         error: true
       });
     }
-  }
-  catch (err){
+  } catch (err){
     console.log(err);
     res.status(500).send('Error de servidor');
-  
   }
 })
+
 
 module.exports = router;

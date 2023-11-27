@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 require('dotenv').config();
 var session = require ('express-session');
@@ -10,7 +11,13 @@ var session = require ('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/admin/login');
+var registroRouter = require('./routes/admin/registro');
 var adminRouter = require('./routes/admin/novedades');
+var apiRouter = require('./routes/api');
+var corsOptions = {
+  origin: 'http://localhost:3000', 
+  credentials: true, 
+};
 
 var app = express();
 
@@ -24,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors(corsOptions));
 
 app.use(session({
   secret: 'palabrasuperSecreta36912',
@@ -47,12 +55,12 @@ secured = async (req, res, next) => {
     }
   }
 
-
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin/login', loginRouter);
+app.use('/admin/registro', registroRouter);
 app.use('/admin/novedades', secured, adminRouter);
+app.use('/api', cors(), apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
