@@ -58,11 +58,15 @@
         <form action="/admin/registro" method="post">
           <div class="mb-3">
             <label for="inputNuevoUsuario" class="form-label">Nuevo Usuario</label>
-            <input type="text" class="form-control" id="inputNuevoUsuario" placeholder="Nuevo Usuario" name="nuevoUsuario" required>
+            <input type="text" class="form-control" id="inputNuevoUsuario" placeholder="" name="nuevoUsuario" required>
           </div>
           <div class="mb-3">
-            <label for="inputNuevaContraseña" class="form-label">Nueva Contraseña</label>
-            <input type="password" class="form-control" id="inputNuevaContraseña" placeholder="Nueva Contraseña" name="nuevaContraseña" required>
+            <label for="inputNuevaContraseña" class="form-label">Nueva Contraseña (mayor a 4 caracteres)</label>
+            <input type="password" class="form-control" id="inputNuevaContraseña" placeholder="" name="nuevaContraseña" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputConfirmarContraseña" class="form-label">Confirmar Contraseña (mayor a 4 caracteres)</label>
+            <input type="password" class="form-control" id="inputConfirmarContraseña" placeholder="" name="confirmarContraseña" required>
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-success">Aceptar</button>

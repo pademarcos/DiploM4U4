@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var usuariosModel = require('./../../models/usuariosModel');
-const md5 = require('md5');
 
 /* GET login page. */
 router.get('/', function (req, res, next) {

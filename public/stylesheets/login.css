@@ -14,3 +14,18 @@ body{
     background-color: lightslategray;
     border-radius: 2%;
 }
+.modal-body {
+    padding: 20px;
+  }
+  
+.modal-title {
+    margin-bottom: 20px;
+  }
+  
+.form-label {
+    font-weight: bold;
+  }
+  .form-control {
+    border-color: #4CAF50; 
+    border-width: 2px;
+  }

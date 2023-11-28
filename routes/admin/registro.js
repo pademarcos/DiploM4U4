@@ -1,12 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var usuariosModel = require('./../../models/usuariosModel');
-const md5 = require('md5');
 
 router.post('/', async (req, res, next) => {
   try {
     var nuevoUsuario = req.body.nuevoUsuario;
-    var nuevaContraseña = md5(req.body.nuevaContraseña);
+    var nuevaContraseña = req.body.nuevaContraseña;
+    var confirmarContraseña = req.body.confirmarContraseña;
+
+    if (nuevaContraseña.length < 4) {
+      return res.render('admin/login', {
+        layout: 'admin/layout',
+        error: true,
+        errorMessage: 'La contraseña debe tener al menos 4 caracteres.',
+      });
+    }
+
+    if (nuevaContraseña !== confirmarContraseña) {
+      return res.render('admin/login', {
+        layout: 'admin/layout',
+        error: true,
+        errorMessage: 'La contraseña y la confirmación no coinciden.',
+      });
+    }
+    
 
     // Lógica para registrar en la base de datos
     await usuariosModel.insertUsuario({
